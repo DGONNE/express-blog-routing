@@ -1,5 +1,5 @@
 const express = require("express");
-const postsRouter = require("./routers/post.js");
+const blogsRouter = require("./routers/post.js");
 const app = express();
 const port = 3001;
 
@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.use("/posts", postsRouter);
+app.use("/posts", blogsRouter);
 
 app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);

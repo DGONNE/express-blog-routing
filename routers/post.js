@@ -2,14 +2,14 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.json(blogs); // Risponde con la lista dei blog in formato JSON
+  res.json(blogs);
 });
 
 // Show
 router.get("/:id", (req, res) => {
-  const blog = blogs.find((b) => b.id === parseInt(req.params.id));
+  const blog = blogs.find((elm) => elm.id === parseInt(req.params.id));
   if (blog) {
-    res.json(blog); // Restituisce il blog in formato JSON
+    res.json(blog);
   } else {
     res.status(404).send("Blog non trovato");
   }
@@ -19,7 +19,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
   const { title, content } = req.body;
   const newBlog = {
-    id: blogs.length + 1, // Assegna un ID incrementale
+    id: blogs.length + 1,
     title,
     content,
   };
@@ -30,7 +30,7 @@ router.post("/", (req, res) => {
 // Update
 router.put("/:id", (req, res) => {
   const { title, content } = req.body;
-  const blog = blogs.find((b) => b.id === parseInt(req.params.id));
+  const blog = blogs.find((elm) => elm.id === parseInt(req.params.id));
   if (blog) {
     blog.title = title;
     blog.content = content;
@@ -42,7 +42,9 @@ router.put("/:id", (req, res) => {
 
 // Delete
 router.delete("/:id", (req, res) => {
-  const blogIndex = blogs.findIndex((b) => b.id === parseInt(req.params.id));
+  const blogIndex = blogs.findIndex(
+    (elm) => elm.id === parseInt(req.params.id)
+  );
   if (blogIndex !== -1) {
     blogs.splice(blogIndex, 1);
     res.send(`Cancellazione del blog ${req.params.id}`);
