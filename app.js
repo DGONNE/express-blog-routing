@@ -9,7 +9,7 @@ app.get("/", (req, res) => {
   res.send("hello world");
 });
 
-app.use("/posts", blogsRouter);
+app.use("/post", blogsRouter);
 
 app.listen(port, () => {
   console.log(`Server in ascolto sulla porta ${port}`);
